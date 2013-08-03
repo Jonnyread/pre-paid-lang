@@ -1,6 +1,15 @@
 require 'sinatra'
 require 'twilio-ruby'
 
+get '/' do
+  Twilio::TwiML::Response.new do |r|
+    r.Say "Welcome to pre paid language learning, the service that gets you fluent faster."
+    r.Gather :numDigits => '8', :action => '/course', :method => 'get' do |g|
+      g.Say 'Please enter your 8 digit course code.'
+    end
+  end.text
+end
+
 get '/course' do
   Twilio::TwiML::Response.new do |r|
     r.Say "Welcome to pre paid language learning, the service that gets you fluent faster."
