@@ -21,7 +21,7 @@ get '/course/selected' do
     end
   elsif params['Digits'] == '2'
     response = Twilio::TwiML::Response.new do |r|
-      r.Say 'Hi Sarah Kate, Welcome to course 2'
+      r.Say 'Welcome to course 2'
       r.Say 'This is where you would hear the course content.'
     end
   end
