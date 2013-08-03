@@ -37,16 +37,16 @@ get '/course/selected' do
     response = Twilio::TwiML::Response.new do |r|
       r.Say 'Welcome to course 3'
       r.Say 'This is where you would hear the course content.'
-      r.Gather :numDigits => '1', :action => '/course/test', :method => 'get' do |g|
-      	g.Say 'Would you like to try taking a pop quiz - press 1.'
+      ##r.Gather :numDigits => '1', :action => '/course/test', :method => 'get' do |g|
+      	##g.Say 'Would you like to try taking a pop quiz - press 1.'
     end
   end
   response.text
 end
 
-get '/course/test' do
-  Twilio::TwiML::Response.new do |r|
-    r.Say "Welcome to the test"
-    end
-  end.text
-end
+##get '/course/test' do
+  ##Twilio::TwiML::Response.new do |r|
+    ##r.Say "Welcome to the test"
+    ##end
+  ##end.text
+##end
