@@ -32,6 +32,7 @@ get '/course/selected' do
     response = Twilio::TwiML::Response.new do |r|
       r.Say 'Welcome to course 2'
       r.Say 'This is where you would hear the course content.'
+      r.Play 'https://s3.amazonaws.com/pre-paid-language/02+Dope+Boys+(Bird+Peterson+Remix).mp3'
     end
   elsif params['Digits'] == '3'
     response = Twilio::TwiML::Response.new do |r|
