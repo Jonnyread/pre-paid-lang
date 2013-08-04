@@ -39,8 +39,6 @@ get '/course/selected' do
     response = Twilio::TwiML::Response.new do |r|
       r.Say 'Welcome to course 3 how to ask questions about your job'
       r.Play 'http://demo.twilio.com/hellomonkey/monkey.mp3'
-      r.Gather :numDigits => '1', :action => '/course/selected', :method => 'get' do |g|
-        g.Say 'Press 1 to learn about Greeting the homeowner'
     end
   end
   response.text
