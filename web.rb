@@ -28,6 +28,7 @@ get '/course/selected' do
     response = Twilio::TwiML::Response.new do |r|
       r.Say 'Welcome to course 1 greeting the homeowner'
       r.Say 'This is where you would hear the course content.'
+      r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
     end
   elsif params['Digits'] == '2'
     response = Twilio::TwiML::Response.new do |r|
