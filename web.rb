@@ -37,26 +37,43 @@ get '/course/selected' do
       r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
     end
   elsif params['Digits'] == '3'
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say 'Welcome to course 3 how to ask questions about your job'
-      r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
-    end
+    redirect '/course/selected/3'
   elsif params['Digits'] == '4'
     redirect '/course/selected/4'
   end
   response.text
 end
 
+get '/course/selected/3' do
+  Twilio::TwiML::Response.new do |r|
+    r.Say "Welcome to course 4.  How to ask questions about your job"
+    r.Say 'Listen to the song and repeat the words. That is how youll learn english.'
+    r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
+    r.Say 'Great job! What do you want to do next?'
+    r.Gather :numDigits => '1', :action => '/course/selected/3/done', :method => 'get' do |g|
+      g.Say 'Press 1 to start the course over'
+      g.Say 'Press 2 to go back to the main menu'
+    end
+  end.text
+end
+
+get '/course/selected/3/done' do
+  if params['Digits'] == '1'
+    redirect '/course/selected/3'
+  elsif params['Digits'] == '2'
+    redirect '/course/selected'
+  end.text
+end
+
 get '/course/selected/4' do
   Twilio::TwiML::Response.new do |r|
-    r.Say "Welcome to course 4 how to ask questions about your job"
-    r.Say 'Listen to the song and repeat the words. That is how you will learn english.'
+    r.Say "Welcome to course 4.  How to ask questions about your job"
+    r.Say 'Listen to the song and repeat the words. That is how youll learn english.'
     r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
     r.Say 'Great job! What do you want to do next?'
     r.Gather :numDigits => '1', :action => '/course/selected/4/done', :method => 'get' do |g|
       g.Say 'Press 1 to start the course over'
-      g.Say 'Press 2 to take a quiz on this course'
-      g.Say 'Press 3 to go back to the main menu'
+      g.Say 'Press 2 to go back to the main menu'
     end
   end.text
 end
@@ -65,8 +82,7 @@ get '/course/selected/4/done' do
   if params['Digits'] == '1'
     redirect '/course/selected/4'
   elsif params['Digits'] == '2'
-    redirect '/course/selected/4'
-  elsif params['Digits'] == '3'
     redirect '/course/selected'
   end.text
 end
+
