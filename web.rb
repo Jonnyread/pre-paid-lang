@@ -17,37 +17,78 @@ get '/course' do
       g.Say 'Press 1 to learn about Greeting the homeowner'
       g.Say 'Press 2 to take course 2 how to negotiate a job.'
       g.Say 'Press 3 to take course 3 how to ask a question about your job.'
+      g.Say 'Press 4 to take course 4 how to negotiate your pay'
+      g.Say 'Press 5 to take course 5 how to get more work.'
       g.Say 'Press any other button to hear this menu again.'
     end
   end.text
 end
 
 get '/course/selected' do
-  redirect '/course' unless ['1', '2', '3', '4'].include?(params['Digits'])
+  redirect '/course' unless ['1', '2', '3', '4', '5'].include?(params['Digits'])
   if params['Digits'] == '1'
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say 'Welcome to course 1 greeting the homeowner'
-      r.Say 'This is where you would hear the course content.'
-      r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
-    end
+    redirect '/course/selected/1'
   elsif params['Digits'] == '2'
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say 'Welcome to course 2 how to negotiate a job'
-      r.Say 'This is where you would hear the course content.'
-      r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
-    end
+    redirect '/course/selected/2'
   elsif params['Digits'] == '3'
     redirect '/course/selected/3'
   elsif params['Digits'] == '4'
     redirect '/course/selected/4'
+  elsif params['Digits'] == '5'
+    redirect '/course/selected/5'
   end
   response.text
+end
+
+get '/course/selected/1' do
+  Twilio::TwiML::Response.new do |r|
+    r.Say "Welcome to course 1.  How to greet the homeowner."
+    r.Say 'Listen to this conversation between the homeowner and a contractor.  Your goal is to pronounce everything just like the people speaking.'
+    r.Say 'Enjoy learning english the easy way.'
+    r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
+    r.Say 'Great job! What do you want to do next?'
+    r.Gather :numDigits => '1', :action => '/course/selected/1/done', :method => 'get' do |g|
+      g.Say 'Press 1 to start the course over'
+      g.Say 'Press 2 to go back to the main menu'
+    end
+  end.text
+end
+
+get '/course/selected/1/done' do
+  if params['Digits'] == '1'
+    redirect '/course/selected/1'
+  elsif params['Digits'] == '2'
+    redirect '/course/selected'
+  end.text
+end
+
+get '/course/selected/2' do
+  Twilio::TwiML::Response.new do |r|
+    r.Say "Welcome to course 2.  How to negotiate a job"
+    r.Say 'Listen to this conversation between the homeowner and a contractor.  Your goal is to pronounce everything just like the people speaking.'
+    r.Say 'Enjoy learning english the easy way.'
+    r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
+    r.Say 'Great job! What do you want to do next?'
+    r.Gather :numDigits => '1', :action => '/course/selected/2/done', :method => 'get' do |g|
+      g.Say 'Press 1 to start the course over'
+      g.Say 'Press 2 to go back to the main menu'
+    end
+  end.text
+end
+
+get '/course/selected/2/done' do
+  if params['Digits'] == '1'
+    redirect '/course/selected/2'
+  elsif params['Digits'] == '2'
+    redirect '/course/selected'
+  end.text
 end
 
 get '/course/selected/3' do
   Twilio::TwiML::Response.new do |r|
     r.Say "Welcome to course 4.  How to ask questions about your job"
-    r.Say 'Listen to the song and repeat the words. That is how youll learn english.'
+    r.Say 'Listen to this conversation between the homeowner and a contractor.  Your goal is to pronounce everything just like the people speaking.'
+    r.Say 'Enjoy learning english the easy way.'
     r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
     r.Say 'Great job! What do you want to do next?'
     r.Gather :numDigits => '1', :action => '/course/selected/3/done', :method => 'get' do |g|
@@ -67,8 +108,9 @@ end
 
 get '/course/selected/4' do
   Twilio::TwiML::Response.new do |r|
-    r.Say "Welcome to course 4.  How to ask questions about your job"
-    r.Say 'Listen to the song and repeat the words. That is how youll learn english.'
+    r.Say "Welcome to course 4.  How to negotiate your pay"
+    r.Say 'Listen to this conversation between the homeowner and a contractor.  Your goal is to pronounce everything just like the people speaking.'
+    r.Say 'Enjoy learning english the easy way.'
     r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
     r.Say 'Great job! What do you want to do next?'
     r.Gather :numDigits => '1', :action => '/course/selected/4/done', :method => 'get' do |g|
@@ -86,3 +128,24 @@ get '/course/selected/4/done' do
   end.text
 end
 
+get '/course/selected/5' do
+  Twilio::TwiML::Response.new do |r|
+    r.Say "Welcome to course 5.  How to get more work"
+    r.Say 'Listen to this conversation between the homeowner and a contractor.  Your goal is to pronounce everything just like the people speaking.'
+    r.Say 'Enjoy learning english the easy way.'
+    r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
+    r.Say 'Great job! What do you want to do next?'
+    r.Gather :numDigits => '1', :action => '/course/selected/5/done', :method => 'get' do |g|
+      g.Say 'Press 1 to start the course over'
+      g.Say 'Press 2 to go back to the main menu'
+    end
+  end.text
+end
+
+get '/course/selected/5/done' do
+  if params['Digits'] == '1'
+    redirect '/course/selected/5'
+  elsif params['Digits'] == '2'
+    redirect '/course/selected'
+  end.text
+end
