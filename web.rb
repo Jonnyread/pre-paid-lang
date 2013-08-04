@@ -41,8 +41,20 @@ get '/course/selected' do
       r.Play 'http://demo.twilio.com/hellomonkey/monkey.mp3'
     end
   elsif params['Digits'] == '4'
-    redirect '/course'
+    redirect '/course/selected/4'
     ##end
   end
   response.text
+end
+
+get '/course/selected/4' do
+  Twilio::TwiML::Response.new do |r|
+    r.Say "Congratulations your code has been accepted.  Please select the course you'd like to take."
+    r.Gather :numDigits => '1', :action => '/course/selected', :method => 'get' do |g|
+      g.Say 'Press 1 to learn about Greeting the homeowner'
+      g.Say 'Press 2 to take course 2 how to negotiate a job.'
+      g.Say 'Press 3 to take course 3 how to ask a question about your job.'
+      g.Say 'Press any other button to hear this menu again.'
+    end
+  end.text
 end
