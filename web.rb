@@ -42,7 +42,7 @@ get '/course/selected' do
     end
   elsif params['Digits'] == '4'
     redirect '/course'
-    end
+    ##end
   end
   response.text
 end
