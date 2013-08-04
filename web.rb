@@ -61,26 +61,14 @@ get '/course/selected/4' do
 end
 
 get '/course/selected/4/done' do
-  redirect '/course' unless ['1', '2', '3', '4'].include?(params['Digits'])
   if params['Digits'] == '1'
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say 'Welcome to course 1 greeting the homeowner'
-      r.Say 'This is where you would hear the course content.'
-    end
+    redirect '/course/selected/4'
   elsif params['Digits'] == '2'
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say 'Welcome to course 2 how to negotiate a job'
-      r.Say 'This is where you would hear the course content.'
-      r.Play 'https://s3.amazonaws.com/pre-paid-language/02+Dope+Boys+(Bird+Peterson+Remix).mp3'
-    end
+    redirect '/course/selected/4'
   elsif params['Digits'] == '3'
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say 'Welcome to course 3 how to ask questions about your job'
-      r.Play 'http://demo.twilio.com/hellomonkey/monkey.mp3'
-    end
+    redirect '/course/selected/4'
   elsif params['Digits'] == '4'
     redirect '/course/selected/4'
     ##end
-  end
-  response.text
+  end.text
 end
