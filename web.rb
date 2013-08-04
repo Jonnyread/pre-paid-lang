@@ -41,8 +41,7 @@ get '/course/selected' do
       r.Play 'http://demo.twilio.com/hellomonkey/monkey.mp3'
     end
   elsif params['Digits'] == '4'
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say 'Here is course number 4'
+    redirect '/course'
     end
   end
   response.text
