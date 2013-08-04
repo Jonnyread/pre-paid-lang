@@ -42,7 +42,6 @@ get '/course/selected' do
     end
   elsif params['Digits'] == '4'
     redirect '/course/selected/4'
-    ##end
   end
   response.text
 end
@@ -55,7 +54,6 @@ get '/course/selected/4' do
       g.Say 'Press 1 to learn about Greeting the homeowner'
       g.Say 'Press 2 to take course 2 how to negotiate a job.'
       g.Say 'Press 3 to take course 3 how to ask a question about your job.'
-      g.Say 'Press any other button to hear this menu again.'
     end
   end.text
 end
@@ -67,8 +65,5 @@ get '/course/selected/4/done' do
     redirect '/course/selected/4'
   elsif params['Digits'] == '3'
     redirect '/course/selected/4'
-  elsif params['Digits'] == '4'
-    redirect '/course/selected/4'
-    ##end
   end.text
 end
