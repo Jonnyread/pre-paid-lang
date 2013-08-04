@@ -34,12 +34,12 @@ get '/course/selected' do
     response = Twilio::TwiML::Response.new do |r|
       r.Say 'Welcome to course 2 how to negotiate a job'
       r.Say 'This is where you would hear the course content.'
-      r.Play 'https://s3.amazonaws.com/pre-paid-language/02+Dope+Boys+(Bird+Peterson+Remix).mp3'
+      r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
     end
   elsif params['Digits'] == '3'
     response = Twilio::TwiML::Response.new do |r|
       r.Say 'Welcome to course 3 how to ask questions about your job'
-      r.Play 'http://demo.twilio.com/hellomonkey/monkey.mp3'
+      r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
     end
   elsif params['Digits'] == '4'
     redirect '/course/selected/4'
@@ -50,11 +50,13 @@ end
 get '/course/selected/4' do
   Twilio::TwiML::Response.new do |r|
     r.Say "Welcome to course 4 how to ask questions about your job"
-    r.Play 'http://demo.twilio.com/hellomonkey/monkey.mp3'
+    r.Say 'Listen to the song and repeat the words. That is how you will learn english.'
+    r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
+    r.Say 'Great job! What do you want to do next?'
     r.Gather :numDigits => '1', :action => '/course/selected/4/done', :method => 'get' do |g|
-      g.Say 'Press 1 to learn about Greeting the homeowner'
-      g.Say 'Press 2 to take course 2 how to negotiate a job.'
-      g.Say 'Press 3 to take course 3 how to ask a question about your job.'
+      g.Say 'Press 1 to start the course over'
+      g.Say 'Press 2 to take a quiz on this course'
+      g.Say 'Press 3 to go back to the main menu'
     end
   end.text
 end
@@ -65,6 +67,6 @@ get '/course/selected/4/done' do
   elsif params['Digits'] == '2'
     redirect '/course/selected/4'
   elsif params['Digits'] == '3'
-    redirect '/course/selected/4'
+    redirect '/course/selected'
   end.text
 end
