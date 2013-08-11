@@ -3,9 +3,9 @@ require 'twilio-ruby'
 
 get '/' do
   Twilio::TwiML::Response.new do |r|
-    r.Say "Welcome to pre paid language learning, the service that gets you fluent faster."
+    r.Say "Bienvenido al prepago curso de idiomas, el sitio que te ayuda dominar un idioma nueva. "
     r.Gather :numDigits => '8', :action => '/course', :method => 'get' do |g|
-      g.Say 'Please enter your 8 digit course code.'
+      g.Say 'Porfavor introduzca su codigo de curso de 8 digitos. '
     end
   end.text
 end
@@ -14,12 +14,12 @@ get '/course' do
   Twilio::TwiML::Response.new do |r|
     r.Say "Congratulations your code has been accepted.  Please select the course you'd like to take."
     r.Gather :numDigits => '1', :action => '/course/selected', :method => 'get' do |g|
-      g.Say 'impulse el numero 1 para aprender mas sobre saludando el dueno', :voice => "woman", :language => "es"
-      g.Say 'Press 2 to take course 2 how to negotiate a job.'
-      g.Say 'Press 3 to take course 3 how to ask a question about your job.'
-      g.Say 'Press 4 to take course 4 how to negotiate your pay'
-      g.Say 'Press 5 to take course 5 how to get more work.'
-      g.Say 'Press any other button to hear this menu again.'
+      g.Say 'impulse el numero 1 para aprender mas sobre como saludar el dueno', :voice => "woman", :language => "es"
+      g.Say 'Press 2 to take course 2 como negociar el proyecto. '
+      g.Say 'Press 3 to take course 3 como hacer una pregunta acerca el proyecto.'
+      g.Say 'Press 4 to take course 4 como negociar su pagamiento.'
+      g.Say 'Press 5 to take course 5 como buscar mas trabajo.'
+      g.Say 'Pulsar un boton para escuchar los opciones de nuevo.'
     end
   end.text
 end
