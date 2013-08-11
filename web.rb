@@ -116,7 +116,7 @@ get '/course/selected/3/done' do
   if params['Digits'] == '1'
     redirect '/course/selected/3'
   elsif params['Digits'] == '2'
-    redirect '/course/selected'
+    redirect '/course/mainmenu'
   end.text
 end
 
@@ -138,7 +138,7 @@ get '/course/selected/4/done' do
   if params['Digits'] == '1'
     redirect '/course/selected/4'
   elsif params['Digits'] == '2'
-    redirect '/course/selected'
+    redirect '/course/mainmenu'
   end.text
 end
 
@@ -160,6 +160,6 @@ get '/course/selected/5/done' do
   if params['Digits'] == '1'
     redirect '/course/selected/5'
   elsif params['Digits'] == '2'
-    redirect '/course/selected'
+    redirect '/course/mainmenu'
   end.text
 end
