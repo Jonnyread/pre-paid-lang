@@ -14,12 +14,12 @@ get '/course' do
   Twilio::TwiML::Response.new do |r|
     r.Say "Felicidades, su codigo ha sido acceptada.  Porfavor escoge el curso que quieres tomar.", :voice => "woman", :language => "es"
     r.Gather :numDigits => '1', :action => '/course/selected', :method => 'get' do |g|
-      g.Say 'impulse el numero 1 para aprender mas sobre como saludar el dueno', :voice => "woman", :language => "es"
-      g.Say 'Press 2 to take course 2 como negociar el proyecto.', :voice => "woman", :language => "es"
-      g.Say 'Press 3 to take course 3 como hacer una pregunta acerca el proyecto.', :voice => "woman", :language => "es"
-      g.Say 'Press 4 to take course 4 como negociar su pagamiento.', :voice => "woman", :language => "es"
-      g.Say 'Press 5 to take course 5 como buscar mas trabajo.', :voice => "woman", :language => "es"
-      g.Say 'Pulsar un boton para escuchar los opciones de nuevo.', :voice => "woman", :language => "es"
+      g.Say 'pulsar 1 para aprender mas sobre como saludar el dueno', :voice => "woman", :language => "es"
+      g.Say 'pulsar 2 para aprender como negociar el proyecto.', :voice => "woman", :language => "es"
+      g.Say 'Pulsar 3 para aprender como hacer una pregunta acerca el proyecto.', :voice => "woman", :language => "es"
+      g.Say 'Pulsar 4 para aprender como negociar su pagamiento.', :voice => "woman", :language => "es"
+      g.Say 'Pulsar 5 para aprender como buscar mas trabajo.', :voice => "woman", :language => "es"
+      g.Say 'Pulsar un otro boton para escuchar los opciones de nuevo.', :voice => "woman", :language => "es"
     end
   end.text
 end
