@@ -24,6 +24,20 @@ get '/course' do
   end.text
 end
 
+get '/course/mainmenu' do
+  Twilio::TwiML::Response.new do |r|
+    r.Say "Please select the course you'd like to take."
+    r.Gather :numDigits => '1', :action => '/course/selected', :method => 'get' do |g|
+      g.Say :voice => "woman", :language => "es" 'impulse el numero 1 para aprender mas sobre saludando el dueno'
+      g.Say 'Press 2 to take course 2 how to negotiate a job.'
+      g.Say 'Press 3 to take course 3 how to ask a question about your job.'
+      g.Say 'Press 4 to take course 4 how to negotiate your pay'
+      g.Say 'Press 5 to take course 5 how to get more work.'
+      g.Say 'Press any other button to hear this menu again.'
+    end
+  end.text
+end
+
 get '/course/selected' do
   redirect '/course' unless ['1', '2', '3', '4', '5'].include?(params['Digits'])
   if params['Digits'] == '1'
@@ -58,7 +72,7 @@ get '/course/selected/1/done' do
   if params['Digits'] == '1'
     redirect '/course/selected/1'
   elsif params['Digits'] == '2'
-    redirect '/course/selected'
+    redirect '/course/mainmenu'
   end.text
 end
 
@@ -80,7 +94,7 @@ get '/course/selected/2/done' do
   if params['Digits'] == '1'
     redirect '/course/selected/2'
   elsif params['Digits'] == '2'
-    redirect '/course/selected'
+    redirect '/course/mainmenu'
   end.text
 end
 
