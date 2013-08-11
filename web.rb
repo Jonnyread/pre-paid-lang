@@ -3,30 +3,30 @@ require 'twilio-ruby'
 
 get '/' do
   Twilio::TwiML::Response.new do |r|
-    r.Say "Bienvenido al prepago curso de idiomas, el sitio que te ayuda dominar un idioma nueva. "
+    r.Say 'Bienvenido al prepago curso de idiomas, el sitio que te ayuda dominar un idioma nueva.', :voice => "woman", :language => "es"
     r.Gather :numDigits => '8', :action => '/course', :method => 'get' do |g|
-      g.Say 'Porfavor introduzca su codigo de curso de 8 digitos. '
+      g.Say 'Porfavor introduzca su codigo de curso de 8 digitos.', :voice => "woman", :language => "es"
     end
   end.text
 end
 
 get '/course' do
   Twilio::TwiML::Response.new do |r|
-    r.Say "Congratulations your code has been accepted.  Please select the course you'd like to take."
+    r.Say "Felicidades, su codigo ha sido acceptada.  Porfavor escoge el curso que quieres tomar.", :voice => "woman", :language => "es"
     r.Gather :numDigits => '1', :action => '/course/selected', :method => 'get' do |g|
       g.Say 'impulse el numero 1 para aprender mas sobre como saludar el dueno', :voice => "woman", :language => "es"
-      g.Say 'Press 2 to take course 2 como negociar el proyecto. '
-      g.Say 'Press 3 to take course 3 como hacer una pregunta acerca el proyecto.'
-      g.Say 'Press 4 to take course 4 como negociar su pagamiento.'
-      g.Say 'Press 5 to take course 5 como buscar mas trabajo.'
-      g.Say 'Pulsar un boton para escuchar los opciones de nuevo.'
+      g.Say 'Press 2 to take course 2 como negociar el proyecto.', :voice => "woman", :language => "es"
+      g.Say 'Press 3 to take course 3 como hacer una pregunta acerca el proyecto.', :voice => "woman", :language => "es"
+      g.Say 'Press 4 to take course 4 como negociar su pagamiento.', :voice => "woman", :language => "es"
+      g.Say 'Press 5 to take course 5 como buscar mas trabajo.', :voice => "woman", :language => "es"
+      g.Say 'Pulsar un boton para escuchar los opciones de nuevo.', :voice => "woman", :language => "es"
     end
   end.text
 end
 
 get '/course/mainmenu' do
   Twilio::TwiML::Response.new do |r|
-    r.Say "Please select the course you'd like to take."
+    r.Say "Porfavor escoge el curso que quieres tomar.", :voice => "woman", :language => "es"
     r.Gather :numDigits => '1', :action => '/course/selected', :method => 'get' do |g|
       g.Say :voice => "woman", :language => "es" 'impulse el numero 1 para aprender mas sobre saludando el dueno'
       g.Say 'Press 2 to take course 2 how to negotiate a job.'
