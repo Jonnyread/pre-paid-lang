@@ -14,7 +14,7 @@ get '/course' do
   Twilio::TwiML::Response.new do |r|
     r.Say "Congratulations your code has been accepted.  Please select the course you'd like to take."
     r.Gather :numDigits => '1', :action => '/course/selected', :method => 'get' do |g|
-      g.Say 'Press 1 to learn about Greeting the homeowner'
+      g.Say :voice => "woman", :language => "es" 'impulse el numero 1 para aprender mas sobre saludando el dueno'
       g.Say 'Press 2 to take course 2 how to negotiate a job.'
       g.Say 'Press 3 to take course 3 how to ask a question about your job.'
       g.Say 'Press 4 to take course 4 how to negotiate your pay'
