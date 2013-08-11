@@ -67,7 +67,7 @@ get '/course/selected/2' do
     r.Say "Welcome to course 2.  How to negotiate a job"
     r.Say 'Listen to this conversation between the homeowner and a contractor.  Your goal is to pronounce everything just like the people speaking.'
     r.Say 'Enjoy learning english the easy way.'
-    r.Play 'https://s3.amazonaws.com/pre-paid-language/01+Wolf+%26+I.mp3'
+    r.Say 'Course material goes here.'
     r.Say 'Great job! What do you want to do next?'
     r.Gather :numDigits => '1', :action => '/course/selected/2/done', :method => 'get' do |g|
       g.Say 'Press 1 to start the course over'
